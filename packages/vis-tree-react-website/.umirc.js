@@ -9,4 +9,7 @@ export default {
   resolve: {
     includes: ["src"],
   },
+  base: "/vis-tree",
+  publicPath: "/vis-tree/",
+  exportStatic: {},
 };

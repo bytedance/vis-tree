@@ -7,6 +7,7 @@
     "build": "lerna run build --scope @vis-tree/core --scope @vis-tree/react",
     "start:react": "lerna run start --scope @vis-tree/react-website",
     "build:react": "lerna run build --scope @vis-tree/react-website",
+    "deploy:react": "lerna run deploy --scope @vis-tree/react-website",
     "test:core": "lerna run test --scope @vis-tree/core",
     "publish": "lerna publish --no-verify-access --no-verify-registry"
   },
