@@ -1,0 +1,25 @@
+{
+  "name": "@vis-tree/react-website",
+  "version": "0.0.0",
+  "description": "website of vis-tree",
+  "author": "aadonkeyz <aadonkeyz@gmail.com>",
+  "license": "MIT",
+  "directories": {
+    "lib": "lib"
+  },
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "start": "dumi dev",
+    "build": "dumi build"
+  },
+  "devDependencies": {
+    "dumi": "^1.0.38"
+  },
+  "dependencies": {
+    "@ant-design/icons": "^4.3.0",
+    "@vis-tree/react": "^0.0.0",
+    "antd": "^4.9.2"
+  }
+}
