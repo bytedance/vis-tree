@@ -17,6 +17,9 @@
     "build": "tsc -p tsconfig.json --declaration true --emitDeclarationOnly true --outDir lib && rollup -c",
     "test": "jest"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "devDependencies": {
     "@babel/core": "^7.12.3",
     "@babel/preset-env": "^7.12.1",

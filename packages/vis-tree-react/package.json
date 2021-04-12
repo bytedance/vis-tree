@@ -16,6 +16,9 @@
     "build": "tsc -p tsconfig.json --declaration true --emitDeclarationOnly true --outDir lib && rollup -c",
     "test": "echo \"Error: run tests from root\" && exit 1"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "peerDependencies": {
     "react": ">=16.12.0",
     "react-dom": ">=16.12.0"

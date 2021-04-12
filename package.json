@@ -9,7 +9,7 @@
     "build:react": "lerna run build --scope @vis-tree/react-website",
     "deploy:react": "lerna run deploy --scope @vis-tree/react-website",
     "test:core": "lerna run test --scope @vis-tree/core",
-    "publish": "lerna publish --no-verify-access --no-verify-registry"
+    "publish": "lerna publish"
   },
   "devDependencies": {
     "lerna": "^3.22.1"

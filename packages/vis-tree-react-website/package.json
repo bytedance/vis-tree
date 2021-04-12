@@ -1,6 +1,7 @@
 {
   "name": "@vis-tree/react-website",
   "version": "0.0.0",
+  "private": "true",
   "description": "website of vis-tree",
   "author": "aadonkeyz <aadonkeyz@gmail.com>",
   "license": "MIT",
