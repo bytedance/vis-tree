@@ -1,6 +1,6 @@
 {
   "name": "@vis-tree/react-website",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "private": "true",
   "description": "website of vis-tree",
   "author": "aadonkeyz <aadonkeyz@gmail.com>",
@@ -22,7 +22,7 @@
   },
   "dependencies": {
     "@ant-design/icons": "^4.3.0",
-    "@vis-tree/react": "^0.1.1",
+    "@vis-tree/react": "^0.1.2",
     "antd": "^4.9.2"
   }
 }
