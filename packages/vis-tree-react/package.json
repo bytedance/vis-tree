@@ -4,6 +4,17 @@
   "description": "react version of vis-tree",
   "author": "aadonkeyz <aadonkeyz@gmail.com>",
   "homepage": "https://bytedance.github.io/vis-tree/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bytedance/vis-tree/tree/main/packages/vis-tree-react"
+  },
+  "keywords": [
+    "visualization",
+    "data-visualization",
+    "tree",
+    "typescript",
+    "react"
+  ],
   "license": "MIT",
   "main": "lib/index.js",
   "directories": {
