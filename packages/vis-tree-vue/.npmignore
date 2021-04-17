@@ -1,0 +1,8 @@
+.idea/
+*.zip
+*.rar
+*.log
+.svn
+.DS_Store
+node_modules
+src
