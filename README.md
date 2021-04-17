@@ -21,3 +21,4 @@ Go to [vis-tree](https://bytedance.github.io/vis-tree/), see the introduction.
 - line config
 - animation function
 - vue version
+- add more test

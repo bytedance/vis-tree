@@ -13,6 +13,12 @@ export interface IDragCallbacks {
   endCallback?: () => void;
 }
 
+interface IMoveInfo {
+  moving: boolean;
+  startPageX: number;
+  startPageY: number;
+}
+
 type TMouseEvent = React.MouseEvent<HTMLDivElement, MouseEvent>;
 type TTouchEvent = React.TouchEvent<HTMLDivElement>;
 
@@ -54,7 +60,7 @@ export function useDragMove({
   movingCallback,
   endCallback,
 }: IDragCallbacks): IDragListeners {
-  const moveInfoRef = useRef({
+  const moveInfoRef = useRef<IMoveInfo>({
     moving: false,
     startPageX: 0,
     startPageY: 0,

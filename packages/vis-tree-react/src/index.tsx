@@ -96,14 +96,14 @@ const VisTreeReact = forwardRef<IVisTreeReactRef, IVisTreeReactProps>(
       options,
     });
 
-    const [treeCanvasEle, setTreeCanvasEle] = useState(() =>
-      document.createElement('div'),
+    const [treeCanvasEle, setTreeCanvasEle] = useState<HTMLDivElement | null>(
+      null,
     );
-    const [canvasWidth, setCanvasWidth] = useState(0);
-    const [canvasHeight, setCanvasHeight] = useState(0);
+    const [canvasWidth, setCanvasWidth] = useState<number>(0);
+    const [canvasHeight, setCanvasHeight] = useState<number>(0);
 
-    const [animating, setAnimating] = useState(false);
-    const [animationPercent, setAnimationPercent] = useState(0);
+    const [animating, setAnimating] = useState<boolean>(false);
+    const [animationPercent, setAnimationPercent] = useState<number>(0);
 
     const disableVirtualRender = options && options.useVirtualRender === false;
     const disableAnimation =
@@ -210,13 +210,15 @@ const VisTreeReact = forwardRef<IVisTreeReactRef, IVisTreeReactProps>(
     }, [dataSource]);
 
     useEffect(() => {
-      if (options && options.defaultScrollInfo) {
-        scrollIntoView(options.defaultScrollInfo);
-      }
       if (treeCanvasEle) {
+        initialize(dataSource);
         treeCanvasEle.addEventListener('wheel', handleMousewheelScroll, {
           passive: false,
         });
+      }
+
+      if (options && options.defaultScrollInfo) {
+        scrollIntoView(options.defaultScrollInfo);
       }
 
       return () => {
