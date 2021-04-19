@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 /* eslint-disable */
-import { defineComponent, Component, PropType, CSSProperties } from "vue";
+import { defineComponent, PropType, CSSProperties } from "vue";
 import VisTree, {
   LAYOUT_STRATEGY,
   TypeIdentifier,
@@ -38,25 +38,6 @@ interface IOptions extends IVisTreePropsOptions {
   lineType?: TypeLineType;
 }
 
-interface IRenderNodeProps {
-  node: IOriginNode;
-  expanded: boolean;
-  parentNode: IOriginNode | undefined;
-}
-
-interface IRenderLineProps {
-  startNode: IOriginNode;
-  stopNode: IOriginNode;
-  containerWidth: number;
-  containerHeight: number;
-  startPointCoordinate: Array<number>;
-  stopPointCoordinate: Array<number>;
-}
-
-type TRenderNode = (props: IRenderNodeProps) => Component;
-
-type TRenderLine = (props: IRenderLineProps) => Component;
-
 type TTreeCanvasEle = null | HTMLDivElement;
 
 interface IVisTreeVueProps {
@@ -65,8 +46,6 @@ interface IVisTreeVueProps {
   options?: IOptions;
   class?: string;
   style?: CSSProperties;
-  renderNode?: TRenderNode;
-  renderLine?: TRenderLine;
 }
 
 interface IDragListeners {
@@ -117,12 +96,6 @@ const VisTreeVue = defineComponent({
     style: {
       type: Object as PropType<IVisTreeVueProps["style"]>,
     },
-    renderNode: {
-      type: Function as PropType<TRenderNode>,
-    },
-    renderLine: {
-      type: Function as PropType<TRenderLine>,
-    },
   },
   data() {
     const treeInstance = new VisTree({
@@ -157,7 +130,7 @@ const VisTreeVue = defineComponent({
     this.treeCanvasEle = this.$refs.treeCanvasEle as HTMLDivElement;
     this.treeInstance.treeCanvasEle = this.treeCanvasEle;
   },
-  onmounted() {
+  unmounted() {
     if (this.treeCanvasEle) {
       this.treeCanvasEle.removeEventListener(
         "wheel",
@@ -346,6 +319,9 @@ const VisTreeVue = defineComponent({
     const disableVirtualRender =
       this.options && this.options.useVirtualRender === false;
 
+    const nodeSlot = this.$slots.node;
+    const lineSlot = this.$slots.line;
+
     return (
       <div
         // @ts-ignore
@@ -400,8 +376,8 @@ const VisTreeVue = defineComponent({
                       // @ts-ignore
                       class="tree-node-content"
                     >
-                      {this.renderNode &&
-                        this.renderNode({
+                      {nodeSlot &&
+                        nodeSlot({
                           node: node.origin,
                           expanded: node.expanded,
                           parentNode:
@@ -438,21 +414,22 @@ const VisTreeVue = defineComponent({
                   />
                 )}
 
-                {customLineStyle && this.renderLine && (
+                {customLineStyle && lineSlot && (
                   <div
                     // @ts-ignore
                     class="tree-custom-line"
                     style={formatStyle(customLineStyle)}
                     data-custom-key={node.key}
                   >
-                    {this.renderLine({
-                      startNode: nodeMap[node.parentKey!].origin,
-                      stopNode: node.origin,
-                      containerWidth: customLineStyle.width,
-                      containerHeight: customLineStyle.height,
-                      startPointCoordinate: startPointCoordinate!,
-                      stopPointCoordinate: stopPointCoordinate!,
-                    })}
+                    {lineSlot &&
+                      lineSlot({
+                        startNode: nodeMap[node.parentKey!].origin,
+                        stopNode: node.origin,
+                        containerWidth: customLineStyle.width,
+                        containerHeight: customLineStyle.height,
+                        startPointCoordinate: startPointCoordinate!,
+                        stopPointCoordinate: stopPointCoordinate!,
+                      })}
                   </div>
                 )}
               </div>
@@ -468,7 +445,6 @@ export {
   VisTreeVue as default,
   LAYOUT_STRATEGY,
   IOriginNode,
-  IRenderNodeProps,
   IScrollInfo,
   IVisTreeVueProps,
 };

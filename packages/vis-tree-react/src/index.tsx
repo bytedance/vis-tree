@@ -371,6 +371,8 @@ export {
   LAYOUT_STRATEGY,
   IOriginNode,
   IRenderNodeProps,
+  IRenderLineProps,
+  IVisTreeReactRef,
   IScrollInfo,
   IVisTreeReactProps,
 };
