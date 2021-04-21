@@ -38,8 +38,6 @@ interface IOptions extends IVisTreePropsOptions {
   lineType?: TypeLineType;
 }
 
-type TTreeCanvasEle = null | HTMLDivElement;
-
 interface IVisTreeVueProps {
   dataSource: IOriginNode;
   scaleRatio?: number;
@@ -107,7 +105,6 @@ const VisTreeVue = defineComponent({
     return {
       treeInstance,
       anchorStyle,
-      treeCanvasEle: null as TTreeCanvasEle,
       animating: false,
       animationPercent: 0,
       moveInfo: {
@@ -126,13 +123,25 @@ const VisTreeVue = defineComponent({
     };
   },
   mounted() {
+    this.treeInstance.treeCanvasEle = this.$el;
     this.initialize(this.dataSource);
-    this.treeCanvasEle = this.$refs.treeCanvasEle as HTMLDivElement;
-    this.treeInstance.treeCanvasEle = this.treeCanvasEle;
+
+    if (this.options && this.options.defaultScrollInfo) {
+      this.scrollIntoView(this.options.defaultScrollInfo);
+    }
+    if (this.treeInstance.treeCanvasEle) {
+      this.treeInstance.treeCanvasEle.addEventListener(
+        "wheel",
+        this.handleMousewheelScroll,
+        {
+          passive: false,
+        }
+      );
+    }
   },
   unmounted() {
-    if (this.treeCanvasEle) {
-      this.treeCanvasEle.removeEventListener(
+    if (this.treeInstance.treeCanvasEle) {
+      this.treeInstance.treeCanvasEle.removeEventListener(
         "wheel",
         this.handleMousewheelScroll
       );
@@ -143,22 +152,8 @@ const VisTreeVue = defineComponent({
       this.handleScaleRatioChange();
     },
     dataSource(): void {
-      if (this.treeCanvasEle) {
+      if (this.treeInstance.treeCanvasEle) {
         this.initialize(this.dataSource);
-      }
-    },
-    treeCanvasEle(): void {
-      if (this.options && this.options.defaultScrollInfo) {
-        this.scrollIntoView(this.options.defaultScrollInfo);
-      }
-      if (this.treeCanvasEle) {
-        this.treeCanvasEle.addEventListener(
-          "wheel",
-          this.handleMousewheelScroll,
-          {
-            passive: false,
-          }
-        );
       }
     },
   },
@@ -326,7 +321,6 @@ const VisTreeVue = defineComponent({
       <div
         // @ts-ignore
         class={this.class ? `tree-canvas ${this.class}` : "tree-canvas"}
-        ref="treeCanvasEle"
         // @ts-ignore
         style={formatStyle(this.style)}
         {...this.dragEventListeners}
@@ -338,7 +332,7 @@ const VisTreeVue = defineComponent({
           style={formatStyle({
             ...this.anchorStyle,
             transform: `scale(${this.scaleRatio})`,
-            visibility: this.treeCanvasEle ? "visible" : "hidden",
+            visibility: this.treeInstance.treeCanvasEle ? "visible" : "hidden",
           })}
         >
           {nodeList.map((node) => {
