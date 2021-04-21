@@ -327,12 +327,14 @@ const VisTreeVue = defineComponent({
         // @ts-ignore
         class={this.class ? `tree-canvas ${this.class}` : "tree-canvas"}
         ref="treeCanvasEle"
+        // @ts-ignore
         style={formatStyle(this.style)}
         {...this.dragEventListeners}
       >
         <div
           // @ts-ignore
           class="tree-anchor"
+          // @ts-ignore
           style={formatStyle({
             ...this.anchorStyle,
             transform: `scale(${this.scaleRatio})`,
@@ -369,6 +371,7 @@ const VisTreeVue = defineComponent({
                   <div
                     // @ts-ignore
                     class="tree-node-wrapper"
+                    // @ts-ignore
                     style={formatStyle(nodeStyle)}
                     data-node-key={node.key}
                   >
@@ -391,6 +394,7 @@ const VisTreeVue = defineComponent({
                       <div
                         // @ts-ignore
                         class="tree-node-head-line"
+                        // @ts-ignore
                         style={formatStyle(headLineStyle)}
                       />
                     )}
@@ -399,6 +403,7 @@ const VisTreeVue = defineComponent({
                       <div
                         // @ts-ignore
                         class="tree-node-tail-line"
+                        // @ts-ignore
                         style={formatStyle(tailLineStyle)}
                       />
                     )}
@@ -409,6 +414,7 @@ const VisTreeVue = defineComponent({
                   <div
                     // @ts-ignore
                     class="tree-junction-line"
+                    // @ts-ignore
                     style={formatStyle(junctionLineStyle)}
                     data-junction-key={node.key}
                   />
@@ -418,6 +424,7 @@ const VisTreeVue = defineComponent({
                   <div
                     // @ts-ignore
                     class="tree-custom-line"
+                    // @ts-ignore
                     style={formatStyle(customLineStyle)}
                     data-custom-key={node.key}
                   >
