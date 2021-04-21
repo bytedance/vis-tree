@@ -1,6 +1,6 @@
 {
   "name": "@vis-tree/vue",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "vue version of vis-tree",
   "author": "aadonkeyz <aadonkeyz@gmail.com>",
   "homepage": "https://bytedance.github.io/vis-tree/",
@@ -33,7 +33,7 @@
     "vue": ">=3.0.0"
   },
   "dependencies": {
-    "@vis-tree/core": "^0.1.3",
+    "@vis-tree/core": "^0.1.4",
     "vue": "^3.0.11"
   },
   "devDependencies": {
