@@ -1,4 +1,3 @@
-import jsx from "acorn-jsx";
 import resolve from "@rollup/plugin-node-resolve";
 import babel from "@rollup/plugin-babel";
 import typescript from "@rollup/plugin-typescript";
@@ -7,22 +6,21 @@ import postcss from "rollup-plugin-postcss";
 import VuePlugin from "rollup-plugin-vue";
 
 export default {
-  input: "./src/index.tsx",
+  input: "./src/index.vue",
   output: [
     {
       file: "./lib/index.js",
-      format: "esm",
+      format: "cjs",
       sourcemap: true,
     },
   ],
   plugins: [
     resolve(),
     typescript(),
+    VuePlugin(),
     babel({ babelHelpers: "bundled" }),
     commonjs(),
     postcss(),
-    VuePlugin(),
   ],
-  acornInjectPlugins: [jsx()],
   external: ["vue"],
 };

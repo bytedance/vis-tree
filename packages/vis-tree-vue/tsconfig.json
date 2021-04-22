@@ -6,5 +6,5 @@
     "jsx": "preserve",
     "moduleResolution": "node"
   },
-  "include": ["src", "types"]
+  "include": ["src"]
 }
