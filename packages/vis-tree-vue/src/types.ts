@@ -4,11 +4,14 @@ import {
   TypeIdentifier,
   TypeLineType,
   IVisTreePropsOptions,
+  INode,
+  IStyleCollection,
   IOriginNode,
   IScrollInfo,
+  INodeExpandedMap,
 } from "@vis-tree/core";
 
-export interface IOptions extends IVisTreePropsOptions {
+interface IOptions extends IVisTreePropsOptions {
   useAnimation?: boolean;
   useVirtualRender?: boolean;
   useWheelScroll?: boolean;
@@ -28,7 +31,7 @@ export interface IOptions extends IVisTreePropsOptions {
   lineType?: TypeLineType;
 }
 
-export interface IVisTreeVueProps {
+interface IVisTreeVueProps {
   dataSource: IOriginNode;
   scaleRatio?: number;
   options?: IOptions;
@@ -36,11 +39,31 @@ export interface IVisTreeVueProps {
   style?: CSSProperties;
 }
 
-export interface IDragListeners {
-  onMousedown: (e: MouseEvent) => void;
-  onMousemove: (e: MouseEvent) => void;
-  onMouseup: () => void;
-  onTouchstart: (e: TouchEvent) => void;
-  onTouchmove: (e: TouchEvent) => void;
-  onTouchend: () => void;
+interface IDragListeners {
+  mousedown: (e: MouseEvent) => void;
+  mousemove: (e: MouseEvent) => void;
+  mouseup: () => void;
+  touchstart: (e: TouchEvent) => void;
+  touchmove: (e: TouchEvent) => void;
+  touchend: () => void;
 }
+
+interface IEnhancedNode extends INode {
+  curStyleCollection: IStyleCollection;
+}
+
+export {
+  LAYOUT_STRATEGY,
+  TypeIdentifier,
+  TypeLineType,
+  IVisTreePropsOptions,
+  INode,
+  IStyleCollection,
+  IOriginNode,
+  IScrollInfo,
+  INodeExpandedMap,
+  IOptions,
+  IVisTreeVueProps,
+  IDragListeners,
+  IEnhancedNode,
+};

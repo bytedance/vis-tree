@@ -5,12 +5,7 @@ This source code is licensed under the MIT license found in the
 LICENSE file in the root directory of this source tree.
 -->
 <template>
-  <div
-    ref="treeCanvasEle"
-    class="tree-canvas"
-    :style="style"
-    {...dragEventListeners}
-  >
+  <div class="tree-canvas" :style="style" v-on="dragEventListeners">
     <div class="tree-anchor" :style="formatStyle(anchorStyle)">
       <template v-for="node in nodeList" :key="node.key">
         <div
@@ -77,19 +72,20 @@ LICENSE file in the root directory of this source tree.
 
 <script lang="ts">
 import { defineComponent, PropType, CSSProperties } from "vue";
-import VisTree, {
-  LAYOUT_STRATEGY,
+import VisTree from "@vis-tree/core";
+
+import {
   IOriginNode,
-  INode,
   IScrollInfo,
   INodeExpandedMap,
-} from "@vis-tree/core";
-
-import { IOptions, IVisTreeVueProps, IDragListeners } from "./types";
+  IVisTreeVueProps,
+  IDragListeners,
+  IEnhancedNode,
+} from "./types";
 
 const ANIMATION_DURATION = 250; // (ms)
 
-const VisTreeVue = defineComponent({
+export default defineComponent({
   name: "VisTreeVue",
   props: {
     dataSource: {
@@ -134,19 +130,18 @@ const VisTreeVue = defineComponent({
         startPageY: 0,
       },
       dragEventListeners: {
-        onMousedown: (event: MouseEvent) => this.startMove(event, "mouse"),
-        onMousemove: (event: MouseEvent) => this.handleMoving(event, "mouse"),
-        onMouseup: this.stopMove,
-        onTouchstart: (event: TouchEvent) => this.startMove(event, "touch"),
-        onTouchmove: (event: TouchEvent) => this.handleMoving(event, "touch"),
-        onTouchend: this.stopMove,
+        mousedown: (event: MouseEvent) => this.startMove(event, "mouse"),
+        mousemove: (event: MouseEvent) => this.handleMoving(event, "mouse"),
+        mouseup: this.stopMove,
+        touchstart: (event: TouchEvent) => this.startMove(event, "touch"),
+        touchmove: (event: TouchEvent) => this.handleMoving(event, "touch"),
+        touchend: this.stopMove,
       } as IDragListeners,
-      nodeList: [] as INode[],
+      nodeList: [] as IEnhancedNode[],
     };
   },
   mounted() {
-    this.treeInstance.treeCanvasEle = this.$refs
-      .treeCanvasEle as HTMLDivElement;
+    this.treeInstance.treeCanvasEle = this.$el;
     this.initialize(this.dataSource);
 
     if (this.options && this.options.defaultScrollInfo) {
@@ -223,7 +218,7 @@ const VisTreeVue = defineComponent({
           return {
             ...node,
             curStyleCollection: styleCollection,
-          };
+          } as IEnhancedNode;
         });
     },
 
@@ -368,15 +363,6 @@ const VisTreeVue = defineComponent({
     },
   },
 });
-
-export {
-  VisTreeVue as default,
-  LAYOUT_STRATEGY,
-  IOriginNode,
-  IScrollInfo,
-  IOptions,
-  IVisTreeVueProps,
-};
 </script>
 
 <style>
