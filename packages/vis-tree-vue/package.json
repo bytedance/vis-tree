@@ -16,7 +16,8 @@
     "vue"
   ],
   "license": "MIT",
-  "main": "lib/index.js",
+  "module": "lib/index.js",
+  "types": "lib/index.d.ts",
   "directories": {
     "lib": "lib"
   },
@@ -36,21 +37,16 @@
     "@vis-tree/core": "^0.1.4"
   },
   "devDependencies": {
-    "@babel/core": "^7.12.3",
-    "@rollup/plugin-babel": "^5.2.1",
     "@rollup/plugin-commonjs": "^16.0.0",
     "@rollup/plugin-node-resolve": "^10.0.0",
-    "@rollup/plugin-typescript": "^6.1.0",
-    "@vue/babel-helper-vue-jsx-merge-props": "^1.2.1",
-    "@vue/babel-preset-jsx": "^1.2.4",
     "@vue/compiler-sfc": "^3.0.11",
-    "acorn-jsx": "^5.3.1",
-    "eslint": "^7.24.0",
+    "eslint": "^7.13.0",
     "eslint-plugin-vue": "^7.9.0",
     "rollup": "^2.33.1",
     "rollup-plugin-postcss": "^3.1.8",
+    "rollup-plugin-typescript2": "^0.30.0",
     "rollup-plugin-vue": "^6.0.0",
-    "tslib": "^2.2.0",
-    "typescript": "^4.0.5"
+    "typescript": "4.0.5",
+    "vue": "^3.0.11"
   }
 }

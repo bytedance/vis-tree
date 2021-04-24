@@ -374,5 +374,6 @@ export {
   IRenderLineProps,
   IVisTreeReactRef,
   IScrollInfo,
+  IOptions,
   IVisTreeReactProps,
 };

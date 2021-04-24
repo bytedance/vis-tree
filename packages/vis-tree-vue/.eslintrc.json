@@ -1,12 +1,16 @@
 {
   "root": true,
+  "env": {
+    "node": true
+  },
   "parser": "vue-eslint-parser",
   "parserOptions": {
     "project": ["./tsconfig.json"],
-    "ecmaVersion": 2020,
-    "ecmaFeatures": {
-      "jsx": true
-    }
+    "ecmaVersion": 2020
   },
-  "extends": ["plugin:vue/vue3-recommended"]
+  "extends": [
+    "plugin:vue/vue3-essential",
+    "@vue/airbnb",
+    "@vue/typescript/recommended"
+  ]
 }

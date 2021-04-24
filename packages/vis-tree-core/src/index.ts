@@ -50,7 +50,7 @@ export interface IOriginNode {
   [key: string]: any;
 }
 
-interface INode {
+export interface INode {
   origin: {
     [key: string]: any;
   };

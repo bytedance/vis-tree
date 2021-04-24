@@ -1,13 +1,11 @@
-import jsx from "acorn-jsx";
 import resolve from "@rollup/plugin-node-resolve";
-import babel from "@rollup/plugin-babel";
-import typescript from "@rollup/plugin-typescript";
 import commonjs from "@rollup/plugin-commonjs";
+import typescript from "rollup-plugin-typescript2";
 import postcss from "rollup-plugin-postcss";
 import VuePlugin from "rollup-plugin-vue";
 
 export default {
-  input: "./src/index.tsx",
+  input: "./src/index.ts",
   output: [
     {
       file: "./lib/index.js",
@@ -17,12 +15,16 @@ export default {
   ],
   plugins: [
     resolve(),
-    typescript(),
-    babel({ babelHelpers: "bundled" }),
+    VuePlugin(),
+    typescript({
+      tsconfigOverride: {
+        compilerOptions: {
+          declaration: true,
+        },
+      },
+    }),
     commonjs(),
     postcss(),
-    VuePlugin(),
   ],
-  acornInjectPlugins: [jsx()],
   external: ["vue"],
 };
