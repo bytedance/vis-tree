@@ -26,19 +26,19 @@ LICENSE file in the root directory of this source tree.
               "
             ></slot>
           </div>
+
+          <div
+            v-if="node.curStyleCollection.headLineStyle"
+            class="tree-node-head-line"
+            :style="formatStyle(node.curStyleCollection.headLineStyle)"
+          />
+
+          <div
+            v-if="node.curStyleCollection.tailLineStyle"
+            class="tree-node-tail-line"
+            :style="formatStyle(node.curStyleCollection.tailLineStyle)"
+          />
         </div>
-
-        <div
-          v-if="node.curStyleCollection.headLineStyle"
-          class="tree-node-head-line"
-          :style="formatStyle(node.curStyleCollection.headLineStyle)"
-        />
-
-        <div
-          v-if="node.curStyleCollection.tailLineStyle"
-          class="tree-node-tail-line"
-          :style="formatStyle(node.curStyleCollection.tailLineStyle)"
-        />
 
         <div
           v-if="node.curStyleCollection.junctionLineStyle"
@@ -119,7 +119,7 @@ export default defineComponent({
       disableAnimation:
         (this.options && this.options.useAnimation === false) ||
         (this.options && this.options.useVirtualRender === false),
-      useWheelScroll: this.options && this.options.useWheelScroll === false,
+      disableWheelScroll: this.options && this.options.useWheelScroll === false,
       treeInstance,
       anchorStyle,
       animating: false,
@@ -236,10 +236,12 @@ export default defineComponent({
 
         if (interval < ANIMATION_DURATION) {
           this.animationPercent = interval / ANIMATION_DURATION;
+          this.rerenderTree();
           requestAnimationFrame(animationCycle);
         } else {
           this.animating = false;
           this.animationPercent = 0;
+          this.rerenderTree();
         }
       };
 
@@ -307,7 +309,7 @@ export default defineComponent({
     },
 
     handleMousewheelScroll(e: WheelEvent): void {
-      if (!this.useWheelScroll) {
+      if (this.disableWheelScroll) {
         return;
       }
 
