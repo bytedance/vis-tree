@@ -1,6 +1,6 @@
 {
   "name": "@vis-tree/react",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "react version of vis-tree",
   "author": "aadonkeyz <aadonkeyz@gmail.com>",
   "homepage": "https://aadonkeyz.github.io/vis-tree-react/",
@@ -36,7 +36,7 @@
     "react-dom": ">=16.12.0"
   },
   "dependencies": {
-    "@vis-tree/core": "^0.1.5",
+    "@vis-tree/core": "^0.1.6",
     "react-virtualized": "^9.22.3"
   },
   "devDependencies": {
