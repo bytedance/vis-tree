@@ -4,4 +4,4 @@
 
 `@vis-tree/react` is the react version of vis-tree.
 
-To see more details, please go to [vis-tree](https://aadonkeyz.github.io/vis-tree-react/).
+To see more details, please go to [here](https://aadonkeyz.github.io/vis-tree-react/).

@@ -343,6 +343,10 @@ export default defineComponent({
       }
     },
 
+    getExpandedKeys() {
+      return this.treeInstance.getExpandedKeys();
+    },
+
     toggleNodeExpanded(key: string | number): void {
       const canToggle = this.treeInstance.toggleNodeExpanded(key);
 
