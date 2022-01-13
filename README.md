@@ -87,10 +87,3 @@ To see more details, please go to [here](https://aadonkeyz.github.io/vis-tree-re
 `@vis-tree/vue` is the vue version of vis-tree.
 
 To see more details, please go to [here](https://aadonkeyz.github.io/vis-tree-vue/Introduction.html).
-
-## TODO
-
-- line config
-- animation function
-- vue version
-- add more test

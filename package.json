@@ -6,7 +6,7 @@
     "bootstrap": "lerna bootstrap",
     "build": "lerna run build --scope @vis-tree/core --scope @vis-tree/react --scope @vis-tree/vue",
     "test:core": "lerna run test --scope @vis-tree/core",
-    "publish": "npm run build & lerna publish"
+    "publish": "lerna publish"
   },
   "devDependencies": {
     "lerna": "^3.22.1"
